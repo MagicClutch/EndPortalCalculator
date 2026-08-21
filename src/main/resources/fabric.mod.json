@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "endportalcalculator",
+  "version": "${version}",
+  "name": "EndPortalCalculator",
+  "description": "Estimates the Stronghold / End Portal position from Eye of Ender throws using least-squares line intersection.",
+  "authors": ["MagicClutch"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/endportalcalculator/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "de.MagicClutch.endportalcalculator.client.EndportalcalculatorClient"
+    ],
+    "main": [
+      "de.MagicClutch.endportalcalculator.Endportalcalculator"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-language-kotlin": ">=${kotlin_loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
