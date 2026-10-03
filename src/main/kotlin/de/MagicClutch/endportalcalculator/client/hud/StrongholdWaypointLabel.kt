@@ -33,6 +33,7 @@ object StrongholdWaypointLabel {
     }
 
     private fun render(graphics: GuiGraphicsExtractor) {
+        if (!EndPortalCalculatorConfig.data.modEnabled) return
         if (!EndPortalCalculatorConfig.data.createWaypointEnabled) return
         val estimate = MeasurementStore.estimate ?: return
         val client = Minecraft.getInstance()

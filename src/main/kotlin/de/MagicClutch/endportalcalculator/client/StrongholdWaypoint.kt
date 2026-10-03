@@ -34,7 +34,8 @@ object StrongholdWaypoint {
         }
 
         val estimate = MeasurementStore.estimate
-        if (estimate == null || !EndPortalCalculatorConfig.data.createWaypointEnabled) {
+        val config = EndPortalCalculatorConfig.data
+        if (estimate == null || !config.modEnabled || !config.createWaypointEnabled) {
             if (trackedPos != null) {
                 manager.untrackWaypoint(TrackedWaypoint.empty(WAYPOINT_ID))
                 trackedPos = null

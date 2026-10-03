@@ -60,6 +60,7 @@ object EyeTracker {
     }
 
     private fun onEyeSpawned(eye: EyeOfEnder) {
+        if (!EndPortalCalculatorConfig.data.modEnabled) return
         if (EndPortalCalculatorConfig.data.captureMode != CaptureMode.AUTO) return
         if (pending.containsKey(eye.id)) return
         val player = Minecraft.getInstance().player ?: return
@@ -123,6 +124,7 @@ object EyeTracker {
     }
 
     fun tryCaptureF3C(): Boolean {
+        if (!EndPortalCalculatorConfig.data.modEnabled) return false
         if (EndPortalCalculatorConfig.data.captureMode != CaptureMode.F3C) return false
         val client = Minecraft.getInstance()
         val player = client.player ?: return false

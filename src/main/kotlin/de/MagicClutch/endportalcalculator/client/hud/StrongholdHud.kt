@@ -23,6 +23,7 @@ object StrongholdHud {
     }
 
     private fun render(graphics: GuiGraphicsExtractor) {
+        if (!EndPortalCalculatorConfig.data.modEnabled) return
         if (!EndPortalCalculatorConfig.data.hudEnabled) return
         val client = Minecraft.getInstance()
         if (client.level == null) return

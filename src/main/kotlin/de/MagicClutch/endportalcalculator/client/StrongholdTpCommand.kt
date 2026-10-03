@@ -1,5 +1,6 @@
 package de.MagicClutch.endportalcalculator.client
 
+import de.MagicClutch.endportalcalculator.client.config.EndPortalCalculatorConfig
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
 import net.fabricmc.fabric.api.client.command.v2.ClientCommands.literal
 import net.minecraft.client.Minecraft
@@ -20,6 +21,11 @@ object StrongholdTpCommand {
     }
 
     private fun run() {
+        if (!EndPortalCalculatorConfig.data.modEnabled) {
+            NotificationBar.actionBar("§cEnd Portal Calculator is disabled")
+            return
+        }
+
         val client = Minecraft.getInstance()
         val player = client.player ?: return
 

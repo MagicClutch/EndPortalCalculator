@@ -12,6 +12,7 @@ object EndPortalCalculatorConfig {
     private val path = FabricLoader.getInstance().configDir.resolve("endportalcalculator.json")
 
     data class Data(
+        var modEnabled: Boolean = true,
         var captureMode: CaptureMode = CaptureMode.AUTO,
         var hudEnabled: Boolean = true,
         var worldRenderEnabled: Boolean = true,
@@ -34,6 +35,11 @@ object EndPortalCalculatorConfig {
     fun save() {
         Files.createDirectories(path.parent)
         path.writer().use { gson.toJson(data, it) }
+    }
+
+    fun setModEnabled(enabled: Boolean) {
+        data.modEnabled = enabled
+        save()
     }
 
     fun setCaptureMode(mode: CaptureMode) {

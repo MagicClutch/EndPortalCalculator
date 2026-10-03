@@ -22,6 +22,7 @@ class EndPortalCalculatorScreen : Screen(Component.literal("End Portal Calculato
     private lateinit var minDistanceField: EditBox
     private var minDistanceLabelY = 0
 
+    private lateinit var modEnabledButton: Button
     private lateinit var autoModeButton: Button
     private lateinit var f3cModeButton: Button
     private lateinit var waypointToggleButton: Button
@@ -37,6 +38,11 @@ class EndPortalCalculatorScreen : Screen(Component.literal("End Portal Calculato
     override fun init() {
         val leftX = 12
         var y = 34
+
+        modEnabledButton = addRenderableWidget(
+            Button.builder(Component.literal("")) { toggleModEnabled() }.pos(leftX, y).size(FIELD_WIDTH, 20).build()
+        )
+        y += 22
 
         addRenderableWidget(Button.builder(Component.literal("Clear All")) { onClearAll() }.pos(leftX, y).size(FIELD_WIDTH, 20).build())
         y += 30
@@ -86,6 +92,13 @@ class EndPortalCalculatorScreen : Screen(Component.literal("End Portal Calculato
         f3cModeButton.message = Component.literal(if (mode == CaptureMode.F3C) "> F3+C Mode <" else "F3+C Mode")
         val waypointOn = EndPortalCalculatorConfig.data.createWaypointEnabled
         waypointToggleButton.message = Component.literal(if (waypointOn) "Create Waypoint: ON" else "Create Waypoint: OFF")
+        val modOn = EndPortalCalculatorConfig.data.modEnabled
+        modEnabledButton.message = Component.literal(if (modOn) "Mod Enabled: ON" else "Mod Enabled: OFF")
+    }
+
+    private fun toggleModEnabled() {
+        EndPortalCalculatorConfig.setModEnabled(!EndPortalCalculatorConfig.data.modEnabled)
+        refreshModeButtons()
     }
 
     private fun setMode(mode: CaptureMode) {

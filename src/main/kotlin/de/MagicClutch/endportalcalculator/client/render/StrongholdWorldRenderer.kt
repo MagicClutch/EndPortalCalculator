@@ -34,6 +34,7 @@ object StrongholdWorldRenderer {
     }
 
     private fun render(context: LevelRenderContext) {
+        if (!EndPortalCalculatorConfig.data.modEnabled) return
         if (!EndPortalCalculatorConfig.data.worldRenderEnabled) return
         val client = Minecraft.getInstance()
         if (client.player == null || client.level == null) return
